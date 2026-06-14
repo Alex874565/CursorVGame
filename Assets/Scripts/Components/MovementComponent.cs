@@ -1,13 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class MovementComponent : MonoBehaviour
 {
     protected Vector2 moveTarget;
-
-    public void SetMoveTarget(Vector2 moveTarget)
-    {
-        this.moveTarget = moveTarget;
-    }
-
+    
+    public abstract void Subscribe(List<object> subjects);
     protected abstract void Move();
 }
