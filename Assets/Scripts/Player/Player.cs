@@ -6,15 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovementComponent))]
 public class Player : MonoBehaviour
 {
-    private InputController _inputController;
+    private PlayerInputController _playerInputController;
     private MovementComponent _movementComponent;
 
     private void Awake()
     {
-        _inputController = GetComponent<InputController>();
+        _playerInputController = GetComponent<PlayerInputController>();
         _movementComponent = GetComponent<MovementComponent>();
         
-        List<object> movementSubjects = new List<object>{_inputController};
+        List<object> movementSubjects = new List<object>{_playerInputController};
         _movementComponent.Subscribe(movementSubjects);
     }
 }

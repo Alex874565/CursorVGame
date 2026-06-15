@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerMovementComponent : MovementComponent
 {
     private Rigidbody2D _rb;
-    private InputController _inputController;
+    private PlayerInputController _playerInputController;
 
     private bool _shouldMove = true;
-    
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -18,21 +18,24 @@ public class PlayerMovementComponent : MovementComponent
     {
         foreach (var subject in subjects)
         {
-            if (subject is InputController inputController)
+            if (subject is PlayerInputController inputController)
             {
-                _inputController = inputController;
-                _inputController.OnMove += HandleMovement;
+                _playerInputController = inputController;
+                _playerInputController.OnMove += HandleMovement;
+                _playerInputController.OnAttackPressed += HandleAttackStarted;
+                _playerInputController.OnAttackReleased += HandleAttackEnded;
                 break;
             }
+
         }
     }
 
     private void OnDestroy()
     {
-        if (_inputController != null)
-            _inputController.OnMove -= HandleMovement;
+        if (_playerInputController != null)
+            _playerInputController.OnMove -= HandleMovement;
     }
-    
+
     protected override void Move()
     {
         if (!_shouldMove) return;
@@ -50,8 +53,18 @@ public class PlayerMovementComponent : MovementComponent
             moveTarget = target;
         }
     }
-    
-    private void FixedUpdate()
+
+    private void HandleAttackStarted()
+    {
+        _shouldMove = false;
+    }
+
+    private void HandleAttackEnded()
+    {
+        _shouldMove = true;
+    }
+
+private void FixedUpdate()
     {
         Move();
     }
