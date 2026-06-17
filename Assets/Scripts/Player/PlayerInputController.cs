@@ -6,7 +6,7 @@ public class PlayerInputController : MonoBehaviour
 {
     public Vector2 MousePosition { get; private set; }
 
-    public event Action<Vector2> OnMove;
+    public event Action<Vector2> OnMoveCursor;
     public event Action OnAttackPressed;
     public event Action OnAttackReleased;
 
@@ -63,7 +63,7 @@ public class PlayerInputController : MonoBehaviour
         if (Vector2.Distance(newMousePos, MousePosition) > 0.1f)
         {
             MousePosition = newMousePos;
-            OnMove?.Invoke(MousePosition);
+            OnMoveCursor?.Invoke(MousePosition);
         }
     }
     
@@ -77,6 +77,6 @@ public class PlayerInputController : MonoBehaviour
         Mouse.current.WarpCursorPosition(screenPoint);
         MousePosition = worldPoint;
 
-        OnMove?.Invoke(MousePosition);
+        OnMoveCursor?.Invoke(MousePosition);
     }
 }

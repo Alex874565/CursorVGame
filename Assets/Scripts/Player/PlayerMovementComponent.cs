@@ -21,7 +21,7 @@ public class PlayerMovementComponent : MovementComponent
             if (subject is PlayerInputController inputController)
             {
                 _playerInputController = inputController;
-                _playerInputController.OnMove += HandleMovement;
+                _playerInputController.OnMoveCursor += HandleMovement;
                 _playerInputController.OnAttackPressed += HandleAttackStarted;
                 _playerInputController.OnAttackReleased += HandleAttackEnded;
                 break;
@@ -33,7 +33,11 @@ public class PlayerMovementComponent : MovementComponent
     private void OnDestroy()
     {
         if (_playerInputController != null)
-            _playerInputController.OnMove -= HandleMovement;
+        {
+            _playerInputController.OnMoveCursor -= HandleMovement;
+            _playerInputController.OnAttackPressed -= HandleAttackStarted;
+            _playerInputController.OnAttackReleased -= HandleAttackEnded;
+        }
     }
 
     protected override void Move()

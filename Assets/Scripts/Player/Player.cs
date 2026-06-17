@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     private PlayerInputController _playerInputController;
     private MovementComponent _movementComponent;
+    private WeaponController _weaponController;
 
     private void Awake()
     {
@@ -16,5 +17,8 @@ public class Player : MonoBehaviour
         
         List<object> movementSubjects = new List<object>{_playerInputController};
         _movementComponent.Subscribe(movementSubjects);
+        
+        List<object> weaponSubjects = new List<object>{_playerInputController};
+        _weaponController.Initialize(weaponSubjects);
     }
 }
