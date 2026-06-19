@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class WeaponController : MonoBehaviour, IShoot
+public class WeaponController : MonoBehaviour, IShoot
 {
     [SerializeField] private Weapon _weapon;
     [SerializeField] private Transform _weaponTransform;
@@ -17,6 +17,7 @@ public abstract class WeaponController : MonoBehaviour, IShoot
     private void Awake()
     {
         _radius = _weaponTransform.localPosition.magnitude;
+        ChangeWeapon(_weapon);
     }
     
     public void Initialize(List<object> subjects)

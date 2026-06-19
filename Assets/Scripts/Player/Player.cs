@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
         _movementComponent.Subscribe(movementSubjects);
         
         List<object> weaponSubjects = new List<object>{_playerInputController};
+        _weaponController = GetComponentInChildren<WeaponController>();
         _weaponController.Initialize(weaponSubjects);
     }
 }
