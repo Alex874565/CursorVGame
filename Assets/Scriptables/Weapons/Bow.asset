@@ -16,4 +16,4 @@ MonoBehaviour:
   <LoadTime>k__BackingField: 1
   <ReloadTime>k__BackingField: 1
   <Sprite>k__BackingField: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  <ProjectilePrefab>k__BackingField: {fileID: 0}
+  <ProjectilePrefab>k__BackingField: {fileID: 3975176763225563189, guid: f3347814b69302148a7a4273690f95f0, type: 3}

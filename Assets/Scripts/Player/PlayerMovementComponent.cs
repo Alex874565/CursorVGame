@@ -22,8 +22,8 @@ public class PlayerMovementComponent : MovementComponent
             {
                 _playerInputController = inputController;
                 _playerInputController.OnMoveCursor += HandleMovement;
-                _playerInputController.OnAttackPressed += HandleAttackStarted;
-                _playerInputController.OnAttackReleased += HandleAttackEnded;
+                _playerInputController.OnLeftClickPressed += HandleAttackStarted;
+                _playerInputController.OnLeftClickReleased += HandleAttackEnded;
                 break;
             }
 
@@ -35,8 +35,8 @@ public class PlayerMovementComponent : MovementComponent
         if (_playerInputController != null)
         {
             _playerInputController.OnMoveCursor -= HandleMovement;
-            _playerInputController.OnAttackPressed -= HandleAttackStarted;
-            _playerInputController.OnAttackReleased -= HandleAttackEnded;
+            _playerInputController.OnLeftClickPressed -= HandleAttackStarted;
+            _playerInputController.OnLeftClickReleased -= HandleAttackEnded;
         }
     }
 

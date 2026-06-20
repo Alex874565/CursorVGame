@@ -7,8 +7,8 @@ public class PlayerInputController : MonoBehaviour
     public Vector2 MousePosition { get; private set; }
 
     public event Action<Vector2> OnMoveCursor;
-    public event Action OnAttackPressed;
-    public event Action OnAttackReleased;
+    public event Action OnLeftClickPressed;
+    public event Action OnLeftClickReleased;
 
     private InputSystem_Actions actions;
     private Camera mainCamera;
@@ -22,16 +22,16 @@ public class PlayerInputController : MonoBehaviour
 
     private void OnEnable()
     {
-        actions.Player.Attack.performed += HandleAttackPressed;
-        actions.Player.Attack.canceled += HandleAttackReleased;
+        actions.Player.Attack.performed += HandleLeftClickPressed;
+        actions.Player.Attack.canceled += HandleLeftClickReleased;
 
         actions.Enable();
     }
 
     private void OnDisable()
     {
-        actions.Player.Attack.performed -= HandleAttackPressed;
-        actions.Player.Attack.canceled -= HandleAttackReleased;
+        actions.Player.Attack.performed -= HandleLeftClickPressed;
+        actions.Player.Attack.canceled -= HandleLeftClickReleased;
 
         actions.Disable();
     }
@@ -41,15 +41,15 @@ public class PlayerInputController : MonoBehaviour
         CheckMovement();
     }
 
-    private void HandleAttackPressed(InputAction.CallbackContext ctx)
+    private void HandleLeftClickPressed(InputAction.CallbackContext ctx)
     {
-        OnAttackPressed?.Invoke();
+        OnLeftClickPressed?.Invoke();
     }
 
-    private void HandleAttackReleased(InputAction.CallbackContext ctx)
+    private void HandleLeftClickReleased(InputAction.CallbackContext ctx)
     {
         TeleportCursorToWorldPoint(gameObject.transform.position);
-        OnAttackReleased?.Invoke();
+        OnLeftClickReleased?.Invoke();
     }
 
     private void CheckMovement()

@@ -9,10 +9,11 @@ public class WeaponController : MonoBehaviour, IShoot
     [SerializeField] private Transform _weaponTransform;
     [SerializeField] private SpriteRenderer _weaponRenderer;
     
-    private Factory _projectileFactory;
     private PlayerInputController _playerInputController;
     
     private float _radius;
+
+    private bool _isShooting;
 
     private void Awake()
     {
@@ -28,6 +29,8 @@ public class WeaponController : MonoBehaviour, IShoot
             {
                 _playerInputController = inputController;
                 inputController.OnMoveCursor += PointAt;
+                inputController.OnLeftClickPressed += StartShooting;
+                inputController.OnLeftClickReleased += StopShooting;
             }
         }
     }
@@ -36,6 +39,7 @@ public class WeaponController : MonoBehaviour, IShoot
     {
         _weapon = newWeapon;
         _weaponRenderer.sprite = _weapon.Sprite;
+        _weaponRenderer.enabled = false;
     }
 
     public void OnDestroy()
@@ -46,9 +50,21 @@ public class WeaponController : MonoBehaviour, IShoot
         }
     }
 
-    public void Shoot()
+    private void StartShooting()
     {
-        _projectileFactory.CreateObject(_weapon.ProjectilePrefab, transform.position, transform.rotation);
+        _weaponRenderer.enabled = true;
+        _isShooting = true;
+    }
+
+    private void StopShooting()
+    {
+        _weaponRenderer.enabled = false;
+        _isShooting = false;
+    }
+
+    public void Shoot() 
+    {
+        ProjectileFactory.Instance.CreateObject(_weapon.ProjectilePrefab, transform.position, transform.rotation);
     }
 
     private void PointAt(Vector2 direction)
