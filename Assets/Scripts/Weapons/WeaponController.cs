@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +15,8 @@ public class WeaponController : MonoBehaviour, IShoot
     private float _radius;
 
     private bool _isShooting;
+
+    private Coroutine _shootingCoroutine;
 
     private void Awake()
     {
@@ -53,18 +56,32 @@ public class WeaponController : MonoBehaviour, IShoot
     private void StartShooting()
     {
         _weaponRenderer.enabled = true;
-        _isShooting = true;
+        _shootingCoroutine = StartCoroutine(ShootingCoroutine());
     }
 
     private void StopShooting()
     {
         _weaponRenderer.enabled = false;
-        _isShooting = false;
+        if (_shootingCoroutine != null)
+        {
+            StopCoroutine(_shootingCoroutine);
+            _shootingCoroutine = null;
+        }
     }
-
+    
     public void Shoot() 
     {
         ProjectileFactory.Instance.CreateObject(_weapon.ProjectilePrefab, transform.position, transform.rotation);
+    }
+
+    private IEnumerator ShootingCoroutine()
+    {
+        yield return new WaitForSeconds(_weapon.LoadTime);
+        do
+        {
+            Shoot();
+            yield return new WaitForSeconds(_weapon.ReloadTime);
+        } while (true);
     }
 
     private void PointAt(Vector2 direction)
