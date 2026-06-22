@@ -71,7 +71,12 @@ public class WeaponController : MonoBehaviour, IShoot
     
     public void Shoot() 
     {
-        ProjectileFactory.Instance.CreateObject(_weapon.ProjectilePrefab, transform.position, transform.rotation);
+        GameObject projectile = ProjectileFactory.Instance.CreateObject(_weapon.ProjectilePrefab, transform.position, transform.rotation);
+        ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+        if (projectileController != null)
+        {
+            projectileController.AddImpulse(transform.right, _weapon.ShootForce);
+        }
     }
 
     private IEnumerator ShootingCoroutine()
@@ -84,12 +89,16 @@ public class WeaponController : MonoBehaviour, IShoot
         } while (true);
     }
 
-    private void PointAt(Vector2 direction)
+    private void PointAt(Vector2 targetPosition)
     {
+        Vector2 direction = targetPosition - (Vector2)_weaponTransform.parent.position;
+
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
         direction.Normalize();
 
         _weaponTransform.localPosition = direction * _radius;
         _weaponTransform.right = direction;
     }
-
 }
