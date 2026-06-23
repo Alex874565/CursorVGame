@@ -7,8 +7,8 @@ public class PlayerInputController : MonoBehaviour
     public Vector2 MousePosition { get; private set; }
 
     public event Action<Vector2> OnMoveCursor;
-    public event Action OnLeftClickPressed;
-    public event Action OnLeftClickReleased;
+    public event System.Action OnLeftClickPressed;
+    public event System.Action OnLeftClickReleased;
 
     private InputSystem_Actions actions;
     private Camera mainCamera;
