@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Action : ScriptableObject
+[CreateAssetMenu(fileName = "TelegraphPattern", menuName = "Scriptables/Enemies/TelegraphPattern")]
+public class TelegraphPattern : ScriptableObject
 {
-    [field: SerializeField] public ActionType ActionType { get; protected set; }
     [Header("Telegraph")]
     [field: SerializeField] public Color TelegraphColor { get; protected set; }
     [field: SerializeField] public int TelegraphCount { get; protected set; }
