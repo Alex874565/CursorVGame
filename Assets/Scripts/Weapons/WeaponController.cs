@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class WeaponController : MonoBehaviour, IShoot
 {
-    [SerializeField] private Weapon _weapon;
+    [FormerlySerializedAs("_weapon")] [SerializeField] private WeaponData weaponData;
     [SerializeField] private Transform _weaponTransform;
     [SerializeField] private SpriteRenderer _weaponRenderer;
     
@@ -21,7 +22,7 @@ public class WeaponController : MonoBehaviour, IShoot
     private void Awake()
     {
         _radius = _weaponTransform.localPosition.magnitude;
-        ChangeWeapon(_weapon);
+        ChangeWeapon(weaponData);
     }
     
     public void Initialize(List<object> subjects)
@@ -38,10 +39,10 @@ public class WeaponController : MonoBehaviour, IShoot
         }
     }
     
-    public void ChangeWeapon(Weapon newWeapon)
+    public void ChangeWeapon(WeaponData newWeaponData)
     {
-        _weapon = newWeapon;
-        _weaponRenderer.sprite = _weapon.Sprite;
+        weaponData = newWeaponData;
+        _weaponRenderer.sprite = weaponData.Sprite;
         _weaponRenderer.enabled = false;
     }
 
@@ -71,21 +72,21 @@ public class WeaponController : MonoBehaviour, IShoot
     
     public void Shoot() 
     {
-        GameObject projectile = ProjectileFactory.Instance.CreateObject(_weapon.ProjectilePrefab, transform.position, transform.rotation);
+        GameObject projectile = ProjectileFactory.Instance.CreateObject(weaponData.ProjectilePrefab, transform.position, transform.rotation);
         ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
         if (projectileController != null)
         {
-            projectileController.AddImpulse(transform.right, _weapon.ShootForce);
+            projectileController.AddImpulse(transform.right, weaponData.ShootForce);
         }
     }
 
     private IEnumerator ShootingCoroutine()
     {
-        yield return new WaitForSeconds(_weapon.LoadTime);
+        yield return new WaitForSeconds(weaponData.LoadTime);
         do
         {
             Shoot();
-            yield return new WaitForSeconds(_weapon.ReloadTime);
+            yield return new WaitForSeconds(weaponData.ReloadTime);
         } while (true);
     }
 

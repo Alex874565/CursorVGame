@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "EnemyState", menuName = "Scriptables/Enemies/State")]
 public class EnemyState : ScriptableObject
 { 
     [SerializeField] private TelegraphPattern telegraphPattern;
     
-    private EnemyContext _enemyContext;
-    private EnemyStateMachine _enemyStateMachine;
+    protected EnemyContext _enemyContext;
+    protected EnemyStateMachine _enemyStateMachine;
     
     public void Initialize(EnemyContext enemyContext)
     {
@@ -35,12 +34,12 @@ public class EnemyState : ScriptableObject
         
     }
 
-    public void Exit()
+    public virtual void Exit()
     {
         
     }
     
-    public EnemyState NextState()
+    public virtual EnemyState NextState()
     {
         return null;
     }

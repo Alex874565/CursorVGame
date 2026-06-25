@@ -5,13 +5,12 @@ public class EnemyStateController : MonoBehaviour
 {
     [SerializeField] private EnemyState _initialState;
     
-    private EnemyContext _enemyContext;
     private EnemyStateMachine _enemyStateMachine;
     
     private void Awake()
     {
-        _enemyContext = new EnemyContext(GetComponent<EnemyVisualController>());
-        _enemyStateMachine = new EnemyStateMachine(_enemyContext, _initialState);
+        Enemy enemy = GetComponent<Enemy>();
+        _enemyStateMachine = new EnemyStateMachine(enemy.EnemyContext, _initialState);
     }
 
     private void Update()
