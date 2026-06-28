@@ -171,6 +171,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1304422585678280302, guid: 021e6f2a3f59e6042a56f738d82e63ce, type: 3}
+      propertyPath: _data
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f10d2fe53b0be848bf12f5abedd2e68, type: 2}
     - target: {fileID: 3452282685982141327, guid: 021e6f2a3f59e6042a56f738d82e63ce, type: 3}
       propertyPath: m_Name
       value: 3x3 Square Enemy
@@ -178,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 5033611528928042934, guid: 021e6f2a3f59e6042a56f738d82e63ce, type: 3}
       propertyPath: _initialState
       value: 
-      objectReference: {fileID: 11400000, guid: de0307e6ea6d2a34b89d82cbfcaa2fa2, type: 2}
+      objectReference: {fileID: 11400000, guid: eb4c3ac3ddab151499e775a271092a8d, type: 2}
     - target: {fileID: 8388470542556586666, guid: 021e6f2a3f59e6042a56f738d82e63ce, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -246,7 +250,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3452282685982141327, guid: 021e6f2a3f59e6042a56f738d82e63ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2091295061}
   m_SourcePrefab: {fileID: 100100000, guid: 021e6f2a3f59e6042a56f738d82e63ce, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -501,6 +508,38 @@ Transform:
   - {fileID: 63037039}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2091295055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3452282685982141327, guid: 021e6f2a3f59e6042a56f738d82e63ce, type: 3}
+  m_PrefabInstance: {fileID: 205595073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &2091295061
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091295055}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2118176057
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771f860699744e9e8bcbbe75f4867b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 11400000, guid: afc361f3486d8dc408987524637244c4, type: 2}
+  weaponData: {fileID: 11400000, guid: afc361f3486d8dc408987524637244c4, type: 2}
   _weaponTransform: {fileID: 2118176058}
   _weaponRenderer: {fileID: 2118176060}
 --- !u!212 &2118176060

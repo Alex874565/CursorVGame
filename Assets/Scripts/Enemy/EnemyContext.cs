@@ -3,11 +3,14 @@
 public class EnemyContext
 {
     public EnemyVisualController VisualController { get; private set; }
-    public EnemyData EnemyData { get; private set; }
+    public EnemyData Data { get; private set; }
     
-    public EnemyContext(EnemyData data, EnemyVisualController visualController)
+    public EnemyCollisionController CollisionController { get; private set; }
+    
+    public EnemyContext(EnemyData data, EnemyVisualController visualController, EnemyCollisionController collisionController)
     {
         VisualController = visualController;
-        EnemyData = data;
+        CollisionController = collisionController;
+        Data = data;
     }
 }
