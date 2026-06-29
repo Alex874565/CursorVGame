@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyMoveRandom", menuName = "Scriptables/Enemy/States/Move/Random")]
+[CreateAssetMenu(fileName = "EnemyMoveRandom", menuName = "Scriptables/Enemies/States/Move/Random")]
 public class EnemyMoveRandom : EnemyMove
 {
     [SerializeField] private float _range;
@@ -22,17 +22,6 @@ public class EnemyMoveRandom : EnemyMove
         _target = _context.CollisionController.Rb.position + direction * maxRange;
     }
 
-    public override void Update()
-    {
-        if(_moveCompleted)
-            _timer += Time.deltaTime;
-
-        if (_moveCompleted && _timer >= _waitTimeAfterMoving)
-        {
-            RollNextState();
-        }
-    }
-
     public override void FixedUpdate()
     {
         Vector2 current = _context.CollisionController.Rb.position;
@@ -47,7 +36,7 @@ public class EnemyMoveRandom : EnemyMove
 
         if (Vector2.Distance(current, _target) < 0.05f)
         {
-            _moveCompleted = true;
+            RollNextState();
         }
     }
 }

@@ -2,7 +2,6 @@
 
 public class EnemyMove : EnemyState
 {
-    [SerializeField] protected float _waitTimeAfterMoving;
     protected Vector2 _target;
     protected bool _moveCompleted;
 

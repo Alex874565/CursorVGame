@@ -5,11 +5,6 @@ using UnityEngine.Serialization;
 public class EnemyState : ScriptableObject
 { 
     [SerializeField] protected TelegraphPattern _telegraphPattern;
-    [Header("Actions")]
-    [SerializeField] protected List<EnemyAttack> _attacks;
-    [SerializeField] protected List<EnemyMove> _moves;
-    [SerializeField] protected List<EnemyDash> _dashes;
-    [SerializeField] protected List<EnemyIdle> _idles;
     
     protected EnemyContext _context;
     protected float _dice;
@@ -49,6 +44,11 @@ public class EnemyState : ScriptableObject
     
     public virtual EnemyState NextState()
     {
+        List<EnemyAttack> _attacks = _context.Data.Attacks;
+        List<EnemyMove> _moves = _context.Data.Moves;
+        List<EnemyDash> _dashes = _context.Data.Dashes;
+        List<EnemyIdle> _idles = _context.Data.Idles;
+        
         Debug.Log($"Dice: {_dice}, AttackChance: {_context.Data.AttackChance}, MoveChance: {_context.Data.MoveChance}, DashChance: {_context.Data.DashChance}");
         if (_dice < _context.Data.AttackChance)
             return _attacks[Random.Range(0, _attacks.Count)];

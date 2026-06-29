@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30d2a1d1887e415da0bee8752c2b7948, type: 3}
-  m_Name: Idle
+  m_Script: {fileID: 11500000, guid: 7939a13cd7f9416b87f5e9833c60e641, type: 3}
+  m_Name: EnemyIdle
   m_EditorClassIdentifier: 
-  telegraphPattern: {fileID: 11400000, guid: fa5e059a496dbf04e88be9c75bee26e5, type: 2}
+  _telegraphPattern: {fileID: 11400000, guid: fa5e059a496dbf04e88be9c75bee26e5, type: 2}
+  _minDuration: 1
+  _maxDuration: 2
