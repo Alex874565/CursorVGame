@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class EnemyContext
+﻿public class EnemyContext
 {
     public EnemyVisualController VisualController { get; private set; }
     public EnemyData Data { get; private set; }

@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d09223eb4ab4e139d91021d1f9a9038, type: 3}
-  m_Name: MoveRandom
+  m_Script: {fileID: 11500000, guid: 4238b0bb43434e2cb4694d11b5ffb0d3, type: 3}
+  m_Name: DashRandom
   m_EditorClassIdentifier: 
   _telegraphPattern: {fileID: 11400000, guid: fa5e059a496dbf04e88be9c75bee26e5, type: 2}
-  _waitTimeAfterMove: 0.5
-  _range: 5
+  _waitTimeAfterMove: 1
+  _range: 2
+  _duration: 0.2

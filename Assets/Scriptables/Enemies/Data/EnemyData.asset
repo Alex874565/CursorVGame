@@ -15,11 +15,12 @@ MonoBehaviour:
   <Health>k__BackingField: 100
   <MovementSpeed>k__BackingField: 2
   <AttackChance>k__BackingField: 0
-  <MoveChance>k__BackingField: 80
-  <DashChance>k__BackingField: 0
+  <MoveChance>k__BackingField: 20
+  <DashChance>k__BackingField: 60
   <Idles>k__BackingField:
   - {fileID: 11400000, guid: 76145777690a75144855c74694305f6d, type: 2}
   <Moves>k__BackingField:
   - {fileID: 11400000, guid: eb4c3ac3ddab151499e775a271092a8d, type: 2}
-  <Dashes>k__BackingField: []
+  <Dashes>k__BackingField:
+  - {fileID: 11400000, guid: 61d8fb2abddb0d345a074b8270cc8bf9, type: 2}
   <Attacks>k__BackingField: []

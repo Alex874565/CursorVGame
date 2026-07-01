@@ -5,11 +5,13 @@ using UnityEngine.Serialization;
 public class EnemyState : ScriptableObject
 { 
     [SerializeField] protected TelegraphPattern _telegraphPattern;
+    [SerializeField] protected float _waitTimeAfterMove;
     
     protected EnemyContext _context;
     protected float _dice;
 
     protected float _timer;
+    protected bool _moveCompleted;
     
     public void Initialize(EnemyContext enemyContext)
     {
@@ -21,11 +23,21 @@ public class EnemyState : ScriptableObject
     {
         _telegraphPattern?.Execute(_context.VisualController);
         _timer = 0;
+        _moveCompleted = false;
         _dice = 99999;
     }
     
     public virtual void Update()
     {
+        if (_moveCompleted)
+        {
+            Debug.Log($"Waiting for {_waitTimeAfterMove} seconds after move.");
+            _timer += Time.deltaTime;
+            if (_timer >= _waitTimeAfterMove)
+            {
+                RollNextState();
+            }
+        }
     }
 
     public virtual void FixedUpdate()
